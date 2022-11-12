@@ -7,12 +7,19 @@ import conectarDB from './config/db.js';
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import productoRoutes from './routes/productoRoutes.js';
 import ventaRoutes from './routes/ventaRoutes.js';
+import fileupload from 'express-fileupload';
+
 const PORT = process.env.PORT || 4000;
 dotenv.config();
 
 // Se le agrega toda la funcionalidad del servidor de express
 const app = express();
 app.use(express.json());
+
+app.use(fileupload({
+    useTempFiles: true,
+    tempFileDir: './files'
+}));
 
 conectarDB();
 
@@ -42,3 +49,8 @@ app.use('/api/ventas', ventaRoutes);
 app.listen(PORT, () => {
     console.log(`Servidor funcionando en el puerto ${PORT} `);
 });
+
+app.use(fileupload({
+    useTempFiles: true,
+    tempFileDir: './files'
+}));

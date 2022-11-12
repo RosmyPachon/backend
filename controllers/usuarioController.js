@@ -1,20 +1,17 @@
-import Usuario from "../models/Usuario";
-import emailRegistro from "../helper/emailRegistro";
+import Usuario from "../models/Usuario.js";
+import emailRegistro from "../helper/emailRegistro.js"
 
 const prueba = (req, res) => {
     res.send({
-        msg: "En esta ruta gestionaremos todas las peticiones coorespondiente al modelo de Usario"
+        msg: "En esta ruta gestionaremos todas las peticiones correspondientes al modelo de usuario"
     })
 }
-
 const registrar = async (req, res) => {
 
     const { nombre, email, password, telefono, direccion, web } = req.body;
     // Validar usuario duplicado
     // findOne busca por los diferentes atributos de la coleccion
-
     const existeUsuario = await Usuario.findOne({ email });
-
     if (existeUsuario) {
         const error = new Error("Usuario ya registrado");
         return res.status(400).json({ msg: error.message });
@@ -33,7 +30,6 @@ const registrar = async (req, res) => {
         console.error(error.message);
     };
 };
-
 const confirmar = async (req, res) => {
 
     // req.params para leer datos de la URL, en este caso token por que asi lo definimos en la ruta
@@ -58,9 +54,8 @@ const confirmar = async (req, res) => {
         console.error(error.message);
     }
 };
-
 export {
     prueba,
     registrar,
     confirmar
-} 
+}
