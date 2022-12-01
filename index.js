@@ -51,7 +51,7 @@ app.use('/api/productos', productoRoutes);
 app.use('/api/ventas', ventaRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Servidor funcionando en el puerto ${PORT} `);
+    console.log(`Servidor funcionando en el puerto: ${PORT} `);
 });
 
 app.use(fileupload({
